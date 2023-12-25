@@ -1,6 +1,6 @@
 import React from 'react'
 import ThemeToggle from './ThemeToggle'
-import { SignInButton, SignUpButton, SignedOut, UserButton } from '@clerk/clerk-react'
+import { SignInButton, SignUpButton, SignedIn, SignedOut, UserButton } from '@clerk/clerk-react'
 import { Link } from 'react-router-dom'
 
 export default function Navbar() {
@@ -10,7 +10,22 @@ export default function Navbar() {
 <header className="flex flex-wrap sm:justify-start sm:flex-nowrap z-50 w-full text-sm py-3 sm:py-0 ">
   <nav className="navbar relative max-w-[85rem] w-full mx-auto px-4 sm:flex sm:items-center sm:justify-between sm:px-6 lg:px-8" aria-label="Global">
     <div className="flex items-center justify-between">
-      <a className="flex-none text-xl font-semibold btn btn-ghost" href="#" aria-label="Notemon">Notemon</a>
+      <Link to='/' className="flex-none text-xl font-semibold btn btn-ghost" href="#" aria-label="Notemon">Notemon</Link>
+    </div>
+    <div className='flex justify-end sm:hidden w-full'>
+      <SignedOut>
+        <ul className='menu menu-horizontal sm:py-6'>
+        <li><SignInButton /></li>
+        </ul>
+      </SignedOut>
+      <SignedIn>
+        <ul className='menu menu-horizontal sm:py-6'>
+        <li><Link to="/"><button className='pb-2'>Dashboard</button></Link></li>
+        <li><ThemeToggle/></li>
+        <li><UserButton /></li>
+          </ul>
+      </SignedIn>
+
     </div>
     <div id="navbar-collapse-with-animation" className="hs-collapse hidden overflow-hidden transition-all duration-300 basis-full grow sm:block">
       <div className="flex flex-col gap-y-4 gap-x-0 mt-2 sm:flex-row sm:items-center sm:justify-end sm:gap-y-0 sm:gap-x-7 sm:mt-0 sm:ps-7">

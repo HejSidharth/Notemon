@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { useIdeas } from "../../lib/context/codeSnip";
 import { useUser } from "@clerk/clerk-react";
 import Sidebar from "../Dashboard";
+import ReactQuill from "react-quill";
+import ReactTextareaAutosize from "react-textarea-autosize";
 
 export default function NewNote() {
   const ideas = useIdeas();
@@ -25,9 +27,15 @@ export default function NewNote() {
               theme="snow"
               className="rounded-lg bg-base-100 focus:ring-0 outline-none placeholder:text-5xl placeholder:font-bold border-none h-16 text-5xl font-bold"
             />
-          </form>
-        </div>
-        <button
+            <ReactTextareaAutosize
+              minRows={3}
+              placeholder="Start typing..."
+              value={description}
+              onChange={(event) => {
+                setDescription(event.target.value);
+              }}
+              className="rounded-lg bg-base-100 focus:ring-0 outline-none placeholder:text-base placeholder:font-light border-none h-16 text-base font-light resize-none pl-4"/>
+              <button
               type="button"
               onClick={() =>
                 ideas.add({
@@ -37,10 +45,12 @@ export default function NewNote() {
                   datetime: new Date(),
                 })
               }
-              className="btn btn-sm"
+              className="btn btn-sm max-w-24"
             >
               Submit
             </button>
+          </form>
+        </div>
       </div>
     </>
   );

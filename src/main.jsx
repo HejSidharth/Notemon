@@ -7,7 +7,6 @@ import { IdeasProvider } from './lib/context/codeSnip.jsx';
 import { CodeShotsProvider } from './lib/context/codeshot.jsx';
 import { dark, light } from '@clerk/themes';
 
-
 const key = import.meta.env.VITE_CLERK_PUBLISHABLE_KEY;
 function AppWrapper() {
   const [theme, setTheme] = useState(localStorage.getItem('theme') || 'light');
