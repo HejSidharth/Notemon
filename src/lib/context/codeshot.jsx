@@ -25,9 +25,8 @@ export function CodeShotsProvider(props) {
           );
           setCodeShots(response.documents);
     } catch (error) {
-        toast.error(error)
-    }
-   
+    console.log(error.message)    
+  }
   };
 
   const add = async (codeShot) => {
@@ -68,7 +67,7 @@ export function CodeShotsProvider(props) {
       init();
       toast.success("Codeshot updated successfully!");
     } catch (error) {
-      console.error("Error updating codeshot:", error);
+      console.error("Error updating codeshot:", error.message);
       toast.error("Error updating codeshot!");
     }
   };

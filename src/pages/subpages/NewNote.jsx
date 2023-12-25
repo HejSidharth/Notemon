@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { useIdeas } from "../../lib/context/codeSnip";
 import { useUser } from "@clerk/clerk-react";
 import Sidebar from "../Dashboard";
-import "react-quill/dist/quill.snow.css"; // import the styles
 
 export default function NewNote() {
   const ideas = useIdeas();

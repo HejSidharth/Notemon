@@ -43,7 +43,7 @@ export function IdeasProvider(props) {
         )
       );
     } catch (error) {
-      console.error("Error updating idea:", error);
+      console.error("Error updating idea:", error.message);
     }
   }
 
