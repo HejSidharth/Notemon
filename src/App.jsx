@@ -12,6 +12,7 @@ import Table from './pages/subpages/Table'
 import NewCodeshot from './pages/subpages/NewCodeshot'
 import CodeShotPage from './pages/subpages/CodeDisplay'
 import { Toaster } from 'react-hot-toast'
+import NoteDisplay from './pages/subpages/NoteDisplay'
 
 
 export default function App() {
@@ -40,6 +41,8 @@ if (navigator.onLine) {
       <Route path="/dashboard" element={<Table/>}></Route>
       <Route path="/codeshot-creation" element={<NewCodeshot/>}></Route>
       <Route path="/codeshot/:id" element={<CodeShotPage />} />
+      <Route path="/note/:id" element={<NoteDisplay />} />
+
     </Routes>
     </BrowserRouter>
 )

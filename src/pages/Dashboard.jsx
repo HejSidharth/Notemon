@@ -4,11 +4,14 @@ import {
   SignUpButton,
   SignedIn,
   SignedOut,
+  useUser,
 } from "@clerk/clerk-react";
 import React, { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { useIdeas } from "../lib/context/codeSnip";
 import { useCodeShots } from "../lib/context/codeshot";
+import toast from "react-hot-toast";
+
 
 export default function Sidebar() {
   const location = useLocation();
@@ -18,9 +21,25 @@ export default function Sidebar() {
   const [isOpen, setIsOpen] = useState(false);
   const [codeOpen, setCodeOpen] = useState(false);
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
-
-
   const ideas = useIdeas();
+  const user = useUser();
+  
+  const newNote = async () => {
+    const note = await ideas.add({
+      userId: user?.user?.id,
+      Title: "",
+      Content: null,
+      datetime: new Date(),
+    });
+    return note.$id;
+  };
+
+  const createAndRedirectToNote = async () => {
+    toast.loading("Creating new note...");
+    const noteId = await newNote();
+    window.location.href = `/note/${noteId}`;
+  };
+
   const code = useCodeShots();
   return (
     <>
@@ -53,8 +72,8 @@ export default function Sidebar() {
                 </Link>
               </li>
               <li>
-                <Link
-                  to="/note"
+                <div
+                  onClick={createAndRedirectToNote}
                   className={`flex items-center p-2 rounded-lg group hover:bg-base-100 ${
                     note ? "bg-base-100" : ""
                   }`}
@@ -71,7 +90,7 @@ export default function Sidebar() {
                   <span className="flex-1 ms-3 whitespace-nowrap">
                     New Note
                   </span>
-                </Link>
+                </div>
               </li>
               <li>
                 <Link
@@ -140,12 +159,14 @@ export default function Sidebar() {
                 >
                   {ideas.current.map((idea) => (
                     <li key={idea.$id}>
+                      <Link to={`/note/${idea.$id}`}>
                       <a
                         href="#"
                         class="flex items-center w-full p-2 transition duration-75 rounded-lg pl-11 group hover:bg-base-100"
                       >
                         {idea.Title}
                       </a>
+                      </Link>
                     </li>
                   )).concat(
                      ideas.current.length === 0 ? (
@@ -202,7 +223,7 @@ export default function Sidebar() {
                     <li key={coding.$id}>
                       <div className="flex justify-between items-center">
                         <Link to={`/codeshot/${coding.$id}`}>
-                          <button className="flex items-center w-full p-2 text-base transition duration-75 rounded-lg group hover:bg-base-100">
+                          <button className="flex items-center p-2 text-base transition duration-75 rounded-lg group hover:bg-base-100">
                             <svg
                               class="w-5 h-5"
                               aria-hidden="true"
@@ -244,7 +265,7 @@ export default function Sidebar() {
                      code.current.length === 0 ? (
                        <tr>
                          <td colSpan="5" className="text-center">
-                           No ideas set.
+                           No CodeSnap set.
                          </td>
                        </tr>
                      ) : null,

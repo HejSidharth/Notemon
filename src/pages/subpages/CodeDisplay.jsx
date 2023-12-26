@@ -8,6 +8,7 @@ import toast from "react-hot-toast";
 import { useClerk, useUser } from "@clerk/clerk-react";
 import Oops from "./Oops";
 import ErrorDocument from "./404Document";
+import { debounce } from "lodash";
 
 function CodeShotPage() {
   const [codeShot, setCodeShot] = useState(null);
@@ -32,13 +33,7 @@ function CodeShotPage() {
     }
   }, [codeShot]);
 
-  useEffect(() => {
-    if (codeShot) {
-      setView(codeShot.view);
-    }
-  }, [codeShot]);
 
- // Empty dependency array means this effect runs once on mount and clean up on unmount
 
   const renderToggleButton = () => {
     if (view === null) {
@@ -95,11 +90,7 @@ function CodeShotPage() {
     setCopied(true);
   };
 
-  const editText = () => {
-    const title = codeShot.title;
-    const codeText = currentCode;
-    const description = codeShot.description;
-    const language = codeShot.language;
+  const debouncedUpdate = debounce((title, codeText, description, language) => {
     code.update(codeShot.$id, {
       title,
       code: codeText,
@@ -107,7 +98,23 @@ function CodeShotPage() {
       view,
       language,
     });
+  }, 5000);
+
+
+  const editText = () => {
+    if (codeShot) {
+      const title = codeShot.title;
+      const codeText = currentCode;
+      const description = codeShot.description;
+      const language = codeShot.language;
+      debouncedUpdate(title, codeText, description, language);
+    }
   };
+
+  useEffect(() => {
+    editText();
+  }, [editText, currentCode]);
+
 
   useEffect(() => {
     const theme = localStorage.getItem("theme");

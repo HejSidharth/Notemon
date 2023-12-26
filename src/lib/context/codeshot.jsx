@@ -65,7 +65,6 @@ export function CodeShotsProvider(props) {
         updatedShot
       );
       init();
-      toast.success("Codeshot updated successfully!");
     } catch (error) {
       console.error("Error updating codeshot:", error.message);
       toast.error("Error updating codeshot!");
