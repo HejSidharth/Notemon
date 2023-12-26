@@ -27,7 +27,7 @@ export default function Sidebar() {
   const newNote = async () => {
     const note = await ideas.add({
       userId: user?.user?.id,
-      Title: "",
+      Title: "Untitled Note",
       Content: null,
       datetime: new Date(),
     });
@@ -79,7 +79,7 @@ export default function Sidebar() {
                   }`}
                 >
                   <svg
-                    className="w-5 h-5 group-hover:rotate-6"
+                    className="w-5 h-5 group-hover:rotate-6 hover:cursor-pointer"
                     aria-hidden="true"
                     xmlns="http://www.w3.org/2000/svg"
                     fill="currentColor"
@@ -87,7 +87,7 @@ export default function Sidebar() {
                   >
                     <path d="M16 14V2a2 2 0 0 0-2-2H2a2 2 0 0 0-2 2v15a3 3 0 0 0 3 3h12a1 1 0 0 0 0-2h-1v-2a2 2 0 0 0 2-2ZM4 2h2v12H4V2Zm8 16H3a1 1 0 0 1 0-2h9v2Z" />
                   </svg>
-                  <span className="flex-1 ms-3 whitespace-nowrap">
+                  <span className="flex-1 ms-3 whitespace-nowrap hover:cursor-pointer">
                     New Note
                   </span>
                 </div>
@@ -159,14 +159,34 @@ export default function Sidebar() {
                 >
                   {ideas.current.map((idea) => (
                     <li key={idea.$id}>
+                      <div className="flex justify-between items-center">
                       <Link to={`/note/${idea.$id}`}>
-                      <a
-                        href="#"
-                        class="flex items-center w-full p-2 transition duration-75 rounded-lg pl-11 group hover:bg-base-100"
-                      >
-                        {idea.Title}
-                      </a>
+                      <button className="flex items-center p-2 text-base transition duration-75 rounded-lg group hover:bg-base-100">
+
+              
+                        <svg className="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 16 20">
+    <path stroke="currentColor" strokeLinejoin="round" strokeWidth="2" d="M6 1v4a1 1 0 0 1-1 1H1m14-4v16a.97.97 0 0 1-.933 1H1.933A.97.97 0 0 1 1 18V5.828a2 2 0 0 1 .586-1.414l2.828-2.828A2 2 0 0 1 5.828 1h8.239A.97.97 0 0 1 15 2Z"/>
+  </svg>
+  <span className="flex-1 ms-3 text-left rtl:text-right whitespace-nowrap">
+                              {idea.Title}
+                            </span>                      </button>
                       </Link>
+                      <button
+                          onClick={() => {
+                            ideas.remove(idea.$id);
+                          }}
+                        >
+                          <svg
+                            className="w-4 h-4"
+                            aria-hidden="true"
+                            xmlns="http://www.w3.org/2000/svg"
+                            fill="currentColor"
+                            viewBox="0 0 18 20"
+                          >
+                            <path d="M17 4h-4V2a2 2 0 0 0-2-2H7a2 2 0 0 0-2 2v2H1a1 1 0 0 0 0 2h1v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V6h1a1 1 0 1 0 0-2ZM7 2h4v2H7V2Zm1 14a1 1 0 1 1-2 0V8a1 1 0 0 1 2 0v8Zm4 0a1 1 0 0 1-2 0V8a1 1 0 0 1 2 0v8Z" />
+                          </svg>
+                        </button>
+                      </div>
                     </li>
                   )).concat(
                      ideas.current.length === 0 ? (

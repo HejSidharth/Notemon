@@ -53,6 +53,7 @@ export function IdeasProvider(props) {
   async function remove(id) {
     await databases.deleteDocument(IDEAS_DATABASE_ID, IDEAS_COLLECTION_ID, id);
     setIdeas((ideas) => ideas.filter((idea) => idea.$id !== id));
+    toast.success("Idea deleted successfully!");
     await init();
   }
    async function init() {

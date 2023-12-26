@@ -14,6 +14,7 @@ export default function NoteDisplay() {
     const [content, setContent] = useState('');
     const IdeasContext = useIdeas();
     const [updated, setUpdated] = useState(null);
+    
     const debouncedUpdate = debounce((ideaId, title, content) => {
         IdeasContext.update(ideaId, { Title: title, Content: content });
       }, 1000); // waits 1000ms after the last call to run the function
@@ -21,8 +22,8 @@ export default function NoteDisplay() {
         if (idea) {
             debouncedUpdate(idea.$id, title, content);
         }
-        const now = new Date();
-        const formattedTime = `${now.getHours()}:${now.getMinutes()}:${now.getSeconds()}`;
+        const now = new Date().toLocaleTimeString();
+        const formattedTime = `Last updated: ${now}`;
         setUpdated(formattedTime);      
     }, [title, content]);
     useEffect(() => {

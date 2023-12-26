@@ -98,7 +98,7 @@ function CodeShotPage() {
       view,
       language,
     });
-  }, 5000);
+  }, 1000);
 
 
   const editText = () => {
@@ -113,7 +113,7 @@ function CodeShotPage() {
 
   useEffect(() => {
     editText();
-  }, [editText, currentCode]);
+  }, [editText, editorRef.current?.getValue()]);
 
 
   useEffect(() => {
