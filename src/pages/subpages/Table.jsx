@@ -176,7 +176,7 @@ export default function Table() {
                 Sign In
               </h1>
               <p class="mb-4 text-3xl tracking-tight font-bold md:text-4xl">
-                Please Sign In to Continue
+                Or Sign Up to Continue
               </p>
               <p class="mb-4 text-lg font-light"></p>
             </div>
