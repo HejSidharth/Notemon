@@ -13,18 +13,7 @@ export default function Table() {
     <>
       <Sidebar />
       <SignedIn>
-        <div className="block sm:hidden">
-          <div className="flex items-center justify-between bg-base-100 border-b border-base-200 px-4 py-3 sm:px-6">
-            <div className="flex items-center">
-              <h1 className="text-2xl font-semibold">
-                Dashboard
-              </h1>
-              </div>
-              </div>
-        </div>
-
-
-        <div className="sm:p-5 p-4 sm:ml-64 hidden sm:block">
+        <div className="sm:p-5 p-4 sm:ml-64">
           <div className="mx-auto max-w-screen-xl px-4 lg:px-12">
             <h1 className="text-4xl font-bold mx-auto mb-5">Dashboard</h1>
             <div className="bg-base-200 relative shadow-md sm:rounded-lg overflow-hidden">
@@ -157,7 +146,7 @@ export default function Table() {
                           .includes(searchText.toLowerCase())
                       )
                       .map((codeShot, index) => (
-                        <tr key={index} className="hover:bg-base-100">
+                        <tr key={index}>
                           <td className="">{index}</td>
                           <td className="">{codeShot.title}</td>
                           <td className="">{codeShot.description}</td>

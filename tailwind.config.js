@@ -3,6 +3,7 @@ export default {
     "./index.html",
     "./src/**/*.{js,ts,jsx,tsx}",
     'node_modules/preline/dist/*.js',
+    "./node_modules/flowbite/**/*.js"
   ],
   theme: {
     extend: {},
