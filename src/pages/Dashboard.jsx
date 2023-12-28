@@ -202,6 +202,7 @@ export default function Sidebar() {
                           <button
                             onClick={() => {
                               ideas.remove(idea.$id);
+                              toast.success("Note deleted!");
                             }}
                           >
                             <svg
