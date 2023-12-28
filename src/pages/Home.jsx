@@ -16,10 +16,10 @@ export default function HeroSection() {
                     📝 Notemon 📝
                   </h1>
                   <p className="text-lg mb-8">
-                    🌟 Welcome to Taskmon – where managing tasks feels like a
-                    breeze! Get ready to supercharge your productivity! 🚀 Click
-                    'Get Started' to start jotting down your to-dos! 📝🔥 Let's crush
-                    those tasks together! 💪✨
+                  📝 Welcome to NoteMon – where taking notes and saving code
+                snippets is a breeze! 🚀 Click 'Get Started' to begin organizing
+                your thoughts and code! 💡🔥 Let's capture knowledge together!
+                💪✨
                   </p>
                   <Link to="/dashboard" onClick={() => toast.success("Welcome!")}>
                     <button className="btn py-3 px-8 rounded-lg ">
