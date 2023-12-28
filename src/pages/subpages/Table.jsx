@@ -13,7 +13,18 @@ export default function Table() {
     <>
       <Sidebar />
       <SignedIn>
-        <div className="sm:p-5 p-4 sm:ml-64">
+        <div className="block sm:hidden">
+          <div className="flex items-center justify-between bg-base-100 border-b border-base-200 px-4 py-3 sm:px-6">
+            <div className="flex items-center">
+              <h1 className="text-2xl font-semibold">
+                Dashboard
+              </h1>
+              </div>
+              </div>
+        </div>
+
+
+        <div className="sm:p-5 p-4 sm:ml-64 hidden sm:block">
           <div className="mx-auto max-w-screen-xl px-4 lg:px-12">
             <h1 className="text-4xl font-bold mx-auto mb-5">Dashboard</h1>
             <div className="bg-base-200 relative shadow-md sm:rounded-lg overflow-hidden">
@@ -57,12 +68,15 @@ export default function Table() {
                       type="button"
                       className="flex items-center justify-center bg-base-100 font-medium rounded-lg text-sm px-4 py-2 btn"
                     >
-                      <svg class="w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
-    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 5.757v8.486M5.757 10h8.486M19 10a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"/>
+                      <svg className="w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
+    <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 5.757v8.486M5.757 10h8.486M19 10a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"/>
   </svg>
                       Add New Code
                     </button>
                   </Link>
+                  <div className="flex items-center space-x-3 w-full md:w-auto">
+                    
+                  </div>
                 </div>
               </div>
               <div className="overflow-x-auto">
@@ -93,7 +107,7 @@ export default function Table() {
                           .includes(searchText.toLowerCase())
                       )
                       .map((codeShot, index) => (
-                        <tr key={index}>
+                        <tr key={index} className="hover:bg-base-100">
                           <td className="">{index}</td>
                           <td className="">{codeShot.title}</td>
                           <td className="">{codeShot.description}</td>
@@ -162,7 +176,7 @@ export default function Table() {
                 Sign In
               </h1>
               <p class="mb-4 text-3xl tracking-tight font-bold md:text-4xl">
-                Please Sign In to Continue
+                Or Sign Up to Continue
               </p>
               <p class="mb-4 text-lg font-light"></p>
             </div>
