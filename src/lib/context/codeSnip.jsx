@@ -2,6 +2,7 @@ import { createContext, useContext, useEffect, useState } from "react";
 import { databases } from "../appwrite";
 import { ID, Query } from "appwrite";
 import { useUser } from "@clerk/clerk-react";
+import toast from "react-hot-toast";
 
 export const IDEAS_DATABASE_ID = "notes";
 export const IDEAS_COLLECTION_ID = "note";
@@ -27,6 +28,8 @@ export function IdeasProvider(props) {
     );
     setIdeas((ideas) => [response.$id, ...ideas].slice(0, 10));
     await init(); // Refetch ideas to ensure we have 10 items
+    toast.success("Idea created successfully!");
+    return response;
   }
 
   async function update(id, updatedIdea) {
@@ -42,6 +45,7 @@ export function IdeasProvider(props) {
           idea.$id === id ? { ...idea, ...updatedIdea } : idea
         )
       );
+      toast.success("Idea updated successfully!");
     } catch (error) {
       console.error("Error updating idea:", error.message);
     }
