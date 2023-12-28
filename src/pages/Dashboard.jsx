@@ -17,6 +17,8 @@ export default function Sidebar() {
   const codeshotCreation = location.pathname === "/codeshot-creation";
   const [isOpen, setIsOpen] = useState(false);
   const [codeOpen, setCodeOpen] = useState(false);
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+
 
   const ideas = useIdeas();
   const code = useCodeShots();
@@ -161,12 +163,14 @@ export default function Sidebar() {
                 >
                   {ideas.current.map((idea) => (
                     <li key={idea.$id}>
+                      <Link to={`/note/${idea.$id}`}>
                       <a
                         href="#"
                         class="flex items-center w-full p-2 transition duration-75 rounded-lg pl-11 group hover:bg-base-100"
                       >
                         {idea.Title}
                       </a>
+                      </Link>
                     </li>
                   )).concat(
                      ideas.current.length === 0 ? (

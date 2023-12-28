@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { useIdeas } from "../../lib/context/codeSnip";
 import { useUser } from "@clerk/clerk-react";
 import Sidebar from "../Dashboard";
+import ReactQuill from "react-quill";
+import ReactTextareaAutosize from "react-textarea-autosize";
 
 export default function NewNote() {
   const ideas = useIdeas();
