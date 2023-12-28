@@ -11,9 +11,7 @@ export default function HeroSection() {
             <div className="container mx-auto px-6 py-16">
               <div className="flex flex-col lg:flex-row justify-center items-center">
                 <div className="lg:w-1/2">
-                    <Link to='/version'>
-                    <code className="code btn btn-sm btn-ghost">Version 2.0</code>
-                    </Link>
+                    <code className="code">Version 1.0</code>
                   <h1 className="sm:text-6xl text-4xl font-bold leading-tight mb-4">
                     📝 Notemon 📝
                   </h1>
